@@ -1,0 +1,89 @@
+/* Hallmark · tokens · theme: Cobalt
+ * Paper band: cool light (L 98.5%, hue ~250) · Display: grotesk-sans · Accent: electric cobalt
+ * Every colour and font in style.css references a token from this file. No inline values.
+ */
+
+:root {
+  /* ---- Colour · light ground -------------------------------------- */
+  --color-paper:        oklch(98.5% 0.004 250);  /* cool engineered near-white, never #fff */
+  --color-paper-2:      oklch(96.6% 0.005 252);  /* recessed surface */
+  --color-ink:          oklch(24%   0.020 258);  /* cool charcoal, never #000 */
+  --color-ink-2:        oklch(34%   0.018 257);  /* body copy */
+  --color-ink-3:        oklch(50%   0.016 256);  /* muted meta */
+  --color-rule:         oklch(90%   0.008 252);  /* hairline */
+  --color-rule-2:       oklch(80%   0.010 252);  /* emphasised rule */
+
+  /* ---- Colour · the one signal ------------------------------------ */
+  /* 56% not 58%: at 58% the white button label lands on 4.24:1 and misses AA.
+     56% gives 4.62:1 on the label and 4.55:1 against paper, chroma untouched. */
+  --color-accent:       oklch(56%   0.200 256);  /* fills, rules, focus rings, UI */
+  --color-accent-text:  oklch(47%   0.170 256);  /* accent as *text* — AA on paper */
+  --color-accent-ink:   oklch(99%   0.004 250);  /* text on an accent fill */
+
+  /* ---- Colour · the one dark band --------------------------------- */
+  --color-graphite:     oklch(20%   0.016 260);
+  --color-graphite-2:   oklch(26%   0.016 260);
+  --color-graphite-rule:oklch(33%   0.014 258);
+  --color-graphite-ink: oklch(94%   0.006 250);
+  --color-graphite-ink-2: oklch(73% 0.012 252);
+  --color-accent-lift:  oklch(76%   0.150 256);  /* accent on graphite */
+
+  /* ---- Typography ------------------------------------------------- */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md:   1.0625rem;
+  --text-lg:   1.1875rem;
+  --text-xl:   1.375rem;
+  --text-2xl:  1.75rem;
+  --text-3xl:  clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+  --text-display-s: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+  --text-display:   clamp(2.75rem, 10vw, 7.5rem);
+
+  --tracking-display: -0.035em;
+  --tracking-mono:     0.06em;
+  --leading-display:   0.92;
+  --leading-body:      1.65;
+
+  /* ---- Space · 4pt scale ------------------------------------------ */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.375rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* ---- Layout ------------------------------------------------------ */
+  --page-max:    68rem;
+  --page-gutter: clamp(1.25rem, 5vw, 4rem);
+  --nav-height:  64px;
+
+  /* ---- Rules & radii ---------------------------------------------- */
+  --rule-hair:  1px;
+  --rule-thick: 2px;
+  --radius-sm:  6px;   /* buttons, inputs — drawn with a ruler */
+  --radius-md:  10px;  /* cards */
+
+  /* ---- Motion ------------------------------------------------------ */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 160ms;
+  --dur-mid:   240ms;
+  --dur-long:  600ms;
+
+  /* ---- Elevation (named scale, never z-index: 9999) --------------- */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-nav:     500;
+  --z-overlay: 800;
+}

@@ -1,0 +1,9 @@
+{
+  "scanned": "2026-07-28",
+  "framework": "none (vanilla HTML)",
+  "fontStack": "Space Grotesk + Inter + JetBrains Mono (Google Fonts link, index.html)",
+  "palette": "OKLCH custom properties (css/tokens.css :root)",
+  "motion": "none installed - hand-written IntersectionObserver in js/main.js",
+  "spacing": "4pt scale via --space-* (css/tokens.css)",
+  "notes": "Directory was empty at first run. Nothing was preserved; full Hallmark stack introduced."
+}
