@@ -203,6 +203,8 @@ img, svg { max-width: 100%; height: auto; }
 
 .nav__link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
@@ -220,7 +222,9 @@ img, svg { max-width: 100%; height: auto; }
   content: "";
   position: absolute;
   left: 0;
-  bottom: var(--space-2xs);
+  /* anchored to the text, not the stretched flex box — otherwise the rule floats
+     ~12px under the baseline and reads as a detached line rather than an underline */
+  top: calc(50% + 0.62em);
   width: 100%;
   height: var(--rule-hair);
   background: var(--color-accent);
@@ -236,8 +240,10 @@ img, svg { max-width: 100%; height: auto; }
 
 /* ------------------------------------------------------- hero (H1 Marquee) */
 
+/* Bottom padding runs heavier than the top (the nav-height term is clearance for the
+   fixed bar, not visual space) so the hero settles into the page instead of floating. */
 .hero {
-  padding-block: calc(var(--nav-height) + var(--space-3xl)) var(--space-2xl);
+  padding-block: calc(var(--nav-height) + var(--space-3xl)) var(--space-4xl);
 }
 
 .hero__name {
@@ -516,6 +522,7 @@ img, svg { max-width: 100%; height: auto; }
   color: var(--color-ink);
   max-width: 28ch;
   overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .foot__links {
@@ -575,7 +582,7 @@ img, svg { max-width: 100%; height: auto; }
 @media (max-width: 40rem) {             /* 640px — the typography breakpoint */
   .section { padding-block: var(--space-2xl); }
   .band { padding-block: var(--space-2xl); }
-  .hero { padding-block: calc(var(--nav-height) + var(--space-2xl)) var(--space-xl); }
+  .hero { padding-block: calc(var(--nav-height) + var(--space-xl)) var(--space-2xl); }
   .hero__lede { font-size: var(--text-md); }
 
   .spec__row { grid-template-columns: minmax(0, 1fr); }
