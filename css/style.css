@@ -371,13 +371,16 @@ img, svg { max-width: 100%; height: auto; }
 
 /* --------------------------------------------------- projects (2-up cards) */
 
+/* auto-fill, not auto-fit: with five cards the last row keeps the track width of the
+   rows above instead of stretching two cards across the whole shell. */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: var(--space-lg);
 }
 
 .project {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -395,11 +398,44 @@ img, svg { max-width: 100%; height: auto; }
   font-weight: 600;
 }
 
+/* The title anchor stretches over the whole card, so the entire tile is the hit
+   target while the accessible name stays the project title. */
+.project__link {
+  color: inherit;
+  text-decoration: none;
+}
+.project__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+}
+.project__link:focus-visible { outline: var(--rule-thick) solid var(--color-accent); outline-offset: 3px; }
+
+@supports selector(:has(*)) {
+  /* Ring the card rather than the inline anchor where :has is available. */
+  .project__link:focus-visible { outline: none; }
+  .project:has(.project__link:focus-visible) {
+    outline: var(--rule-thick) solid var(--color-accent);
+    outline-offset: 3px;
+    border-color: var(--color-accent);
+  }
+}
+
 .project__body {
   font-size: var(--text-base);
   color: var(--color-ink-2);
   flex: 1;
 }
+
+/* Pinned to the card bottom so the meta lines up across cards of differing height. */
+.project__meta {
+  margin-block-start: var(--space-xs);
+  padding-block-start: var(--space-sm);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.project:hover .project__link { color: var(--color-accent-text); }
 
 .project__stack {
   display: flex;
