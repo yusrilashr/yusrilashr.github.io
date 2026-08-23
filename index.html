@@ -33,9 +33,9 @@
   <div class="nav__inner">
     <a class="nav__brand" href="#top">Yusril S. Ashar</a>
     <nav class="nav__center" aria-label="Sections">
-      <a class="nav__link" href="#experience">Experience</a>
-      <a class="nav__link" href="#projects">Projects</a>
       <a class="nav__link" href="#dashboards">Dashboards</a>
+      <a class="nav__link" href="#projects">Projects</a>
+      <a class="nav__link" href="#experience">Experience</a>
       <a class="nav__link" href="#skills">Skills</a>
     </nav>
     <div class="nav__right">
@@ -59,6 +59,101 @@
   </section>
 
   <hr class="rule-thick" />
+
+  <!-- Dashboards · thumbnail plates linking to the live vizzes on Tableau Public -->
+  <section class="section shell" id="dashboards">
+    <div class="section__head">
+      <h2 class="section__title">Dashboards</h2>
+      <p class="section__note">Published on Tableau Public. Each one opens interactive.</p>
+    </div>
+
+    <div class="vizzes">
+      <article class="viz reveal">
+        <span class="viz__frame">
+          <img class="viz__shot" src="https://public.tableau.com/static/images/ai/air_bnb_17875015285110/WhoSetsPrice/1.png"
+               alt="Airbnb pricing dashboard with a choropleth of median price index by New York zipcode, a histogram of the price index, and a table of median nightly price by borough, bedroom count, and room type." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="viz__title">
+          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/air_bnb_17875015285110/WhoSetsPrice" target="_blank" rel="noopener noreferrer">Who Sets the Price, and Where?</a>
+        </h3>
+        <p class="viz__body">New York Airbnb listings priced against their own neighbourhood: a median price index mapped by zipcode, the spread of that index across listings, and median nightly rates by borough, bedroom count, and room type.</p>
+        <span class="viz__meta mono-label">Tableau Public ↗</span>
+      </article>
+
+      <article class="viz reveal">
+        <span class="viz__frame">
+          <img class="viz__shot" src="https://public.tableau.com/static/images/ID/IDX_summary/StockDashboard/1.png"
+               alt="Stock dashboard showing a selected ticker's price statistics, a price trend line, a volume chart, and ranked tables of the day's movers." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="viz__title">
+          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IDX_summary/StockDashboard" target="_blank" rel="noopener noreferrer">IDX Stock Summary</a>
+        </h3>
+        <p class="viz__body">A daily read on Indonesia Stock Exchange tickers: open, high, low, close and market cap for the selected stock, price and traded-volume trends, and ranked tables of the day's biggest movers.</p>
+        <span class="viz__meta mono-label">Tableau Public ↗</span>
+      </article>
+
+      <article class="viz reveal">
+        <span class="viz__frame">
+          <img class="viz__shot" src="https://public.tableau.com/static/images/Su/Superstore_Dashboard_16999756740170/Dashboard1/1.png"
+               alt="Retail dashboard comparing this year against last year by segment and category, with a sub-category growth ranking, a regional table, and a map." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="viz__title">
+          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/Superstore_Dashboard_16999756740170/Dashboard1" target="_blank" rel="noopener noreferrer">Superstore Performance</a>
+        </h3>
+        <p class="viz__body">This year against last year, with growth carried through every cut: customer segment, product category, sub-category ranking, product detail, and region down to state, mapped.</p>
+        <span class="viz__meta mono-label">Tableau Public ↗</span>
+      </article>
+
+      <article class="viz reveal">
+        <span class="viz__frame">
+          <img class="viz__shot" src="https://public.tableau.com/static/images/In/IndonesiaCoalData2021/Dashboard1/1.png"
+               alt="Indonesian coal dashboard with a choropleth of production by province, an energy-mix bar, an export-destination treemap, and trend lines for production and price." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="viz__title">
+          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IndonesiaCoalData2021/Dashboard1" target="_blank" rel="noopener noreferrer">Indonesia Coal Data 2021</a>
+        </h3>
+        <p class="viz__body">Where Indonesian coal comes from and where it goes: production by province, coal's share of the national energy mix, export destinations by volume, domestic use by sector, and reference price over a decade.</p>
+        <span class="viz__meta mono-label">Tableau Public ↗</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- Projects · 2-up, hairline-bordered, no imagery -->
+  <section class="section shell" id="projects">
+    <div class="section__head">
+      <h2 class="section__title">Selected projects</h2>
+      <p class="section__note">Analysis I've done outside the day job. Most of it is public, and open to read.</p>
+    </div>
+
+    <div class="projects">
+      <article class="project reveal">
+        <h3 class="project__title">
+          <a class="project__link" href="https://github.com/yusrilashr/Olist-Analysis" target="_blank" rel="noopener noreferrer">Olist E-commerce Analysis</a>
+        </h3>
+        <p class="project__body">Exploratory analysis of Brazilian e-commerce transactions after a full wrangling and cleaning pass: sales volume by city, hourly demand patterns, customer distribution, and the items people buy most.</p>
+        <div class="project__stack">
+          <span class="chip">pandas</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Matplotlib</span>
+          <span class="chip">seaborn</span>
+        </div>
+        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
+      </article>
+
+      <article class="project reveal">
+        <h3 class="project__title">
+          <a class="project__link" href="https://github.com/yusrilashr/Prediction-Model-for-Energy-Consumption-at-Manufacture-Industry" target="_blank" rel="noopener noreferrer">Energy Consumption Prediction</a>
+        </h3>
+        <p class="project__body">Analysis and modelling of energy consumption (kWh) across manufacturing companies, comparing candidate models to find the one that predicts consumption best.</p>
+        <div class="project__stack">
+          <span class="chip">Python</span>
+          <span class="chip">Predictive modelling</span>
+        </div>
+        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
+      </article>
+
+    </div>
+  </section>
 
   <!-- F4 Step sequence · numbered by real dates, not decorative eyebrows -->
   <section class="section shell" id="experience">
@@ -106,89 +201,6 @@
         </ul>
       </li>
     </ol>
-  </section>
-
-  <!-- Projects · 2-up, hairline-bordered, no imagery -->
-  <section class="section shell" id="projects">
-    <div class="section__head">
-      <h2 class="section__title">Selected projects</h2>
-      <p class="section__note">Analysis I've done outside the day job. Most of it is public, and open to read.</p>
-    </div>
-
-    <div class="projects">
-      <article class="project reveal">
-        <h3 class="project__title">
-          <a class="project__link" href="https://github.com/yusrilashr/Olist-Analysis" target="_blank" rel="noopener noreferrer">Olist E-commerce Analysis</a>
-        </h3>
-        <p class="project__body">Exploratory analysis of Brazilian e-commerce transactions after a full wrangling and cleaning pass: sales volume by city, hourly demand patterns, customer distribution, and the items people buy most.</p>
-        <div class="project__stack">
-          <span class="chip">pandas</span>
-          <span class="chip">NumPy</span>
-          <span class="chip">Matplotlib</span>
-          <span class="chip">seaborn</span>
-        </div>
-        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
-      </article>
-
-      <article class="project reveal">
-        <h3 class="project__title">
-          <a class="project__link" href="https://github.com/yusrilashr/Prediction-Model-for-Energy-Consumption-at-Manufacture-Industry" target="_blank" rel="noopener noreferrer">Energy Consumption Prediction</a>
-        </h3>
-        <p class="project__body">Analysis and modelling of energy consumption (kWh) across manufacturing companies, comparing candidate models to find the one that predicts consumption best.</p>
-        <div class="project__stack">
-          <span class="chip">Python</span>
-          <span class="chip">Predictive modelling</span>
-        </div>
-        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- Dashboards · thumbnail plates linking to the live vizzes on Tableau Public -->
-  <section class="section shell" id="dashboards">
-    <div class="section__head">
-      <h2 class="section__title">Dashboards</h2>
-      <p class="section__note">Published on Tableau Public. Each one opens interactive.</p>
-    </div>
-
-    <div class="vizzes">
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/ID/IDX_summary/StockDashboard/1.png"
-               alt="Stock dashboard showing a selected ticker's price statistics, a price trend line, a volume chart, and ranked tables of the day's movers." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IDX_summary/StockDashboard" target="_blank" rel="noopener noreferrer">IDX Stock Summary</a>
-        </h3>
-        <p class="viz__body">A daily read on Indonesia Stock Exchange tickers: open, high, low, close and market cap for the selected stock, price and traded-volume trends, and ranked tables of the day's biggest movers.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/Su/Superstore_Dashboard_16999756740170/Dashboard1/1.png"
-               alt="Retail dashboard comparing this year against last year by segment and category, with a sub-category growth ranking, a regional table, and a map." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/Superstore_Dashboard_16999756740170/Dashboard1" target="_blank" rel="noopener noreferrer">Superstore Performance</a>
-        </h3>
-        <p class="viz__body">This year against last year, with growth carried through every cut: customer segment, product category, sub-category ranking, product detail, and region down to state, mapped.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/In/IndonesiaCoalData2021/Dashboard1/1.png"
-               alt="Indonesian coal dashboard with a choropleth of production by province, an energy-mix bar, an export-destination treemap, and trend lines for production and price." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IndonesiaCoalData2021/Dashboard1" target="_blank" rel="noopener noreferrer">Indonesia Coal Data 2021</a>
-        </h3>
-        <p class="viz__body">Where Indonesian coal comes from and where it goes: production by province, coal's share of the national energy mix, export destinations by volume, domestic use by sector, and reference price over a decade.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-    </div>
   </section>
 
   <!-- The one graphite band · F3 spec sheet -->
