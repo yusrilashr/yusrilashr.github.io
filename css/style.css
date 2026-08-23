@@ -100,13 +100,6 @@ img, svg { max-width: 100%; height: auto; }
   color: var(--color-ink-3);
 }
 
-.rule-thick {
-  height: var(--rule-thick);
-  border: 0;
-  margin: 0;
-  background: var(--color-ink);
-}
-
 /* Reveal — the whole motion engine (primitive 1 of 3). */
 .reveal {
   opacity: 0;
@@ -154,39 +147,32 @@ img, svg { max-width: 100%; height: auto; }
 
 /* -------------------------------------------------------------- nav (N1b) */
 
-/* The masthead is its own surface, not a tint of the page. It runs near-black
- * under the wordmark and opens toward cobalt under the CTA, with a ruled-line
- * ribbon fanning across the right. The hard edge where it meets paper is the
- * point — no frost, no bleed. */
+/* The nav has no surface of its own — it sits inside the navy header band, so at
+ * rest the band is its background and the ribbon runs behind the links. It only
+ * grows a surface once it scrolls off the band and light content passes under. */
 .nav {
   position: fixed;
   inset: 0 0 auto;
   z-index: var(--z-nav);
-  background: linear-gradient(90deg,
-      var(--color-navy-deep) 0%,
-      var(--color-navy)      42%,
-      var(--color-navy-2)    82%,
-      var(--color-navy-lift) 100%);
-  transition: box-shadow var(--dur-mid) var(--ease-out);
+  background: transparent;
+  transition: background-color var(--dur-mid) var(--ease-out),
+              box-shadow var(--dur-mid) var(--ease-out);
 }
 
-/* The ribbon — 84 straight lines whose envelope draws the curve. Anchored right
-   with its left fade baked into the file, so the wordmark end stays flat black
-   at any viewport width and the centre links never sit on top of the fan. */
-.nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/nav-ribbon.svg") right center / auto 100% no-repeat;
-  pointer-events: none;
+/* Primitive 2 of 3: detach-on-scroll. Not frost — the bar lands on navy, opaque,
+   because the content it now covers is paper and the links are light. */
+.nav.is-scrolled {
+  background: var(--color-navy);
+  box-shadow: 0 12px 32px -14px color-mix(in oklch, var(--color-navy-deep) 72%, transparent),
+              0 2px 8px -5px color-mix(in oklch, var(--color-navy-deep) 60%, transparent);
 }
 
-/* One hairline, brightening to cobalt at the end the gradient is already lit. */
-.nav::after {
+/* The hairline belongs to the detached state only; on the band there is no edge
+   to draw, because the bar and the band are one surface. */
+.nav.is-scrolled::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
-  z-index: 2;
   height: var(--rule-hair);
   background: linear-gradient(90deg,
       color-mix(in oklch, var(--color-navy-rule) 45%, transparent) 0%,
@@ -195,18 +181,10 @@ img, svg { max-width: 100%; height: auto; }
   pointer-events: none;
 }
 
-/* Primitive 2 of 3: the band was always opaque, so scroll changes lift, not frost. */
-.nav.is-scrolled {
-  box-shadow: 0 12px 32px -14px color-mix(in oklch, var(--color-navy-deep) 72%, transparent),
-              0 2px 8px -5px color-mix(in oklch, var(--color-navy-deep) 60%, transparent);
-}
-
 /* Focus rings go to the lifted cobalt — the UI cobalt is too close to the band. */
 .nav :focus-visible { outline-color: var(--color-accent-lift); }
 
 .nav__inner {
-  position: relative;      /* above the ribbon; no negative z-index anywhere */
-  z-index: 1;
   max-width: var(--page-max);
   margin-inline: auto;
   padding-inline: var(--page-gutter);
@@ -283,10 +261,49 @@ img, svg { max-width: 100%; height: auto; }
 
 /* ------------------------------------------------------- hero (H1 Marquee) */
 
-/* Bottom padding runs heavier than the top (the nav-height term is clearance for the
-   fixed bar, not visual space) so the hero settles into the page instead of floating. */
+/* The header band. Full-bleed navy running near-black under the type and opening
+ * toward cobalt under the ribbon, with the nav sitting inside it — one masthead,
+ * not a bar plus a hero. Bottom padding runs heavier than the top (the nav-height
+ * term is clearance for the fixed bar, not visual space). */
 .hero {
+  position: relative;
+  isolation: isolate;
   padding-block: calc(var(--nav-height) + var(--space-3xl)) var(--space-4xl);
+  background:
+    radial-gradient(72% 130% at 70% 52%,
+      color-mix(in oklch, var(--color-navy-lift) 85%, transparent) 0%,
+      transparent 62%),
+    linear-gradient(100deg,
+      var(--color-navy-deep) 0%,
+      var(--color-navy)      45%,
+      var(--color-navy-2)    100%);
+  color: var(--color-navy-ink-2);
+}
+
+/* The ribbon — 82 straight lines whose envelope draws the curve. Anchored right,
+   its left fade baked into the file, so the type side stays flat black at any
+   width. Its own layer, so the breakpoints can pull it back without touching
+   the gradient underneath. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../assets/header-ribbon.svg") right center / auto 100% no-repeat;
+  pointer-events: none;
+}
+
+/* The edge into the page — the one rule that replaced the old <hr>, brightening
+   to cobalt at the end the band is already lit. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--rule-thick);
+  background: linear-gradient(90deg,
+      var(--color-navy-rule) 0%,
+      color-mix(in oklch, var(--color-accent) 60%, var(--color-navy-rule)) 55%,
+      var(--color-accent) 100%);
 }
 
 .hero__name {
@@ -295,6 +312,7 @@ img, svg { max-width: 100%; height: auto; }
   letter-spacing: -0.02em;         /* the -0.035em display tracking is too tight below 5rem */
   max-width: 20ch;                 /* one line on desktop, two on narrow — no forced stack */
   margin-block-end: var(--space-md);
+  color: var(--color-navy-ink);
 }
 
 .hero__role {
@@ -305,21 +323,23 @@ img, svg { max-width: 100%; height: auto; }
   margin-block-end: var(--space-lg);
 }
 
+.hero__role .mono-label { color: var(--color-navy-ink-2); }
+
 .hero__tick {
   display: inline-block;
   width: var(--space-lg);
   height: var(--rule-thick);
-  background: var(--color-accent);
+  background: var(--color-accent-lift);
 }
 
 .hero__lede {
   max-width: 62ch;
   font-size: var(--text-lg);
-  color: var(--color-ink-2);
+  color: var(--color-navy-ink-2);
   text-wrap: pretty;
 }
 
-.hero__lede strong { color: var(--color-ink); font-weight: 600; }
+.hero__lede strong { color: var(--color-navy-ink); font-weight: 600; }
 
 /* ------------------------------------------------------------- sections */
 
@@ -748,7 +768,10 @@ img, svg { max-width: 100%; height: auto; }
 
 @media (max-width: 40rem) {             /* 640px — the typography breakpoint */
   :root { --nav-height: 64px; }
-  .nav::before { opacity: 0.55; }       /* the fan's dense end would crowd the CTA */
+
+  /* A phone shows a narrow window onto the fan, so it lands denser and closer to
+     the type than it ever does on desktop. Pull it back and slide it right. */
+  .hero::before { opacity: 0.5; background-position: 78% center; }
 
   .section { padding-block: var(--space-2xl); }
   .band { padding-block: var(--space-2xl); }
@@ -783,9 +806,12 @@ img, svg { max-width: 100%; height: auto; }
 
   body { background: var(--color-paper); color: var(--color-ink); font-size: 10pt; }
 
-  .hero { padding-block: 0 var(--space-md); }
-  .hero__name { font-size: 28pt; max-width: none; }
-  .hero__lede { font-size: 10pt; }
+  /* the header band inverts to paper too — same reason as the graphite one */
+  .hero { padding-block: 0 var(--space-md); background: none; color: var(--color-ink-2); }
+  .hero::before, .hero::after { display: none; }
+  .hero__name { font-size: 28pt; max-width: none; color: var(--color-ink); }
+  .hero__role .mono-label { color: var(--color-ink-3); }
+  .hero__lede { font-size: 10pt; color: var(--color-ink-2); }
 
   .section, .band { padding-block: var(--space-md); break-inside: auto; }
 

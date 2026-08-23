@@ -46,19 +46,21 @@
 
 <main id="main">
 
-  <!-- H1 Marquee · typography fills the fold · no button here, by design -->
-  <section class="hero shell" id="top">
-    <h1 class="hero__name">Yusril Sabilla Ashar</h1>
-    <p class="hero__role">
-      <span class="hero__tick" aria-hidden="true"></span>
-      <span class="mono-label">Business Intelligence</span>
-    </p>
-    <p class="hero__lede">
-      I make reporting faster and data pipelines less fragile.
-    </p>
+  <!-- H1 Marquee · typography fills the fold · no button here, by design.
+       The band runs full-bleed so the nav sits inside it: one navy masthead,
+       ending in a hard edge rather than the old 2px rule. -->
+  <section class="hero" id="top">
+    <div class="shell">
+      <h1 class="hero__name">Yusril Sabilla Ashar</h1>
+      <p class="hero__role">
+        <span class="hero__tick" aria-hidden="true"></span>
+        <span class="mono-label">Business Intelligence</span>
+      </p>
+      <p class="hero__lede">
+        I make reporting faster and data pipelines less fragile.
+      </p>
+    </div>
   </section>
-
-  <hr class="rule-thick" />
 
   <!-- Dashboards · thumbnail plates linking to the live vizzes on Tableau Public -->
   <section class="section shell" id="dashboards">
