@@ -133,6 +133,7 @@ img, svg { max-width: 100%; height: auto; }
   cursor: pointer;
   transition: background-color var(--dur-short) var(--ease-out),
               border-color var(--dur-short) var(--ease-out),
+              box-shadow var(--dur-short) var(--ease-out),
               color var(--dur-short) var(--ease-out);
 }
 
@@ -153,24 +154,59 @@ img, svg { max-width: 100%; height: auto; }
 
 /* -------------------------------------------------------------- nav (N1b) */
 
+/* The masthead is its own surface, not a tint of the page. It runs near-black
+ * under the wordmark and opens toward cobalt under the CTA, with a ruled-line
+ * ribbon fanning across the right. The hard edge where it meets paper is the
+ * point — no frost, no bleed. */
 .nav {
   position: fixed;
   inset: 0 0 auto;
   z-index: var(--z-nav);
-  background: transparent;
-  border-bottom: var(--rule-hair) solid transparent;
-  transition: background-color var(--dur-mid) var(--ease-out),
-              border-color var(--dur-mid) var(--ease-out);
+  background: linear-gradient(90deg,
+      var(--color-navy-deep) 0%,
+      var(--color-navy)      42%,
+      var(--color-navy-2)    82%,
+      var(--color-navy-lift) 100%);
+  transition: box-shadow var(--dur-mid) var(--ease-out);
 }
 
-/* Primitive 2 of 3: frost-on-scroll. */
-.nav.is-scrolled {
-  background: color-mix(in oklch, var(--color-paper) 78%, transparent);
-  backdrop-filter: blur(18px) saturate(160%);
-  border-bottom-color: var(--color-rule);
+/* The ribbon — 84 straight lines whose envelope draws the curve. Anchored right
+   with its left fade baked into the file, so the wordmark end stays flat black
+   at any viewport width and the centre links never sit on top of the fan. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/nav-ribbon.svg") right center / auto 100% no-repeat;
+  pointer-events: none;
 }
+
+/* One hairline, brightening to cobalt at the end the gradient is already lit. */
+.nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  height: var(--rule-hair);
+  background: linear-gradient(90deg,
+      color-mix(in oklch, var(--color-navy-rule) 45%, transparent) 0%,
+      var(--color-navy-rule) 40%,
+      var(--color-accent) 100%);
+  pointer-events: none;
+}
+
+/* Primitive 2 of 3: the band was always opaque, so scroll changes lift, not frost. */
+.nav.is-scrolled {
+  box-shadow: 0 12px 32px -14px color-mix(in oklch, var(--color-navy-deep) 72%, transparent),
+              0 2px 8px -5px color-mix(in oklch, var(--color-navy-deep) 60%, transparent);
+}
+
+/* Focus rings go to the lifted cobalt — the UI cobalt is too close to the band. */
+.nav :focus-visible { outline-color: var(--color-accent-lift); }
 
 .nav__inner {
+  position: relative;      /* above the ribbon; no negative z-index anywhere */
+  z-index: 1;
   max-width: var(--page-max);
   margin-inline: auto;
   padding-inline: var(--page-gutter);
@@ -190,7 +226,7 @@ img, svg { max-width: 100%; height: auto; }
   font-size: var(--text-base);
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--color-ink);
+  color: var(--color-navy-ink);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -210,7 +246,7 @@ img, svg { max-width: 100%; height: auto; }
   font-weight: 500;
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: var(--color-ink-2);
+  color: var(--color-navy-ink-2);
   text-decoration: none;
   white-space: nowrap;
   padding-block: var(--space-sm);
@@ -227,16 +263,23 @@ img, svg { max-width: 100%; height: auto; }
   top: calc(50% + 0.62em);
   width: 100%;
   height: var(--rule-hair);
-  background: var(--color-accent);
+  background: var(--color-accent-lift);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-mid) var(--ease-out);
 }
-.nav__link:hover { color: var(--color-accent-text); }
+.nav__link:hover { color: var(--color-accent-lift); }
 .nav__link:hover::after,
 .nav__link:focus-visible::after { transform: scaleX(1); }
 
 .nav__right { justify-self: end; }
+
+/* On the band the CTA cannot darken on hover — that reads as receding. It gains a
+   cobalt halo instead, which keeps the label at its verified 4.6:1. */
+.nav .btn--accent:hover {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-accent) 34%, transparent);
+}
 
 /* ------------------------------------------------------- hero (H1 Marquee) */
 
@@ -704,6 +747,9 @@ img, svg { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 40rem) {             /* 640px — the typography breakpoint */
+  :root { --nav-height: 64px; }
+  .nav::before { opacity: 0.55; }       /* the fan's dense end would crowd the CTA */
+
   .section { padding-block: var(--space-2xl); }
   .band { padding-block: var(--space-2xl); }
   .hero { padding-block: calc(var(--nav-height) + var(--space-xl)) var(--space-2xl); }

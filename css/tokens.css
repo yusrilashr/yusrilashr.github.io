@@ -20,6 +20,17 @@
   --color-accent-text:  oklch(47%   0.170 256);  /* accent as *text* — AA on paper */
   --color-accent-ink:   oklch(99%   0.004 250);  /* text on an accent fill */
 
+  /* ---- Colour · the navy masthead --------------------------------- */
+  /* Runs near-black under the wordmark and opens toward cobalt under the CTA,
+     so the bar reads as one lit surface rather than a flat block. */
+  --color-navy-deep:  oklch(11%   0.035 265);
+  --color-navy:       oklch(17%   0.050 264);
+  --color-navy-2:     oklch(23%   0.075 264);
+  --color-navy-lift:  oklch(28%   0.095 262);
+  --color-navy-rule:  oklch(38%   0.060 260);
+  --color-navy-ink:   oklch(96%   0.005 250);  /* wordmark — 17.1:1 on the band */
+  --color-navy-ink-2: oklch(78%   0.020 255);  /* nav links — 9.6:1 on the band */
+
   /* ---- Colour · the one dark band --------------------------------- */
   --color-graphite:     oklch(20%   0.016 260);
   --color-graphite-2:   oklch(26%   0.016 260);
@@ -64,7 +75,7 @@
   /* ---- Layout ------------------------------------------------------ */
   --page-max:    68rem;
   --page-gutter: clamp(1.25rem, 5vw, 4rem);
-  --nav-height:  64px;
+  --nav-height:  72px;
 
   /* ---- Rules & radii ---------------------------------------------- */
   --rule-hair:  1px;
