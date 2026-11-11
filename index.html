@@ -28,252 +28,347 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- N1b · wordmark left · three anchors centred · one cobalt CTA right · frost-on-scroll -->
+<!-- N5 · a small detached bar. All four sections stay visible at every width,
+     so there is no menu to open on a phone. The current section is marked by JS. -->
 <header class="nav" id="nav">
-  <div class="nav__inner">
+  <nav class="nav__bar" aria-label="Sections">
     <a class="nav__brand" href="#top">Yusril S. Ashar</a>
-    <nav class="nav__center" aria-label="Sections">
-      <a class="nav__link" href="#dashboards">Dashboards</a>
-      <a class="nav__link" href="#projects">Projects</a>
-      <a class="nav__link" href="#experience">Experience</a>
+    <div class="nav__links">
+      <a class="nav__link" href="#work">Work</a>
       <a class="nav__link" href="#skills">Skills</a>
-    </nav>
-    <div class="nav__right">
-      <a class="btn btn--accent" href="assets/Yusril_Sabilla_Ashar_CV.pdf" download>Download CV</a>
+      <a class="nav__link" href="#cv">CV</a>
+      <a class="nav__link" href="#contact">Contact</a>
     </div>
-  </div>
+    <a class="btn btn--navy nav__cta" href="assets/Yusril_Sabilla_Ashar_CV.pdf" download>Download CV</a>
+  </nav>
 </header>
 
 <main id="main">
 
-  <!-- H1 Marquee · typography fills the fold · no button here, by design.
-       The band runs full-bleed so the nav sits inside it: one navy masthead,
-       ending in a hard edge rather than the old 2px rule. -->
+  <!-- Masthead · who, what, and one way forward. The fact rail answers the
+       recruiter's first four questions before any scrolling. -->
   <section class="hero" id="top">
-    <div class="shell">
+    <div class="shell hero__body">
       <h1 class="hero__name">Yusril Sabilla Ashar</h1>
       <p class="hero__role">
         <span class="hero__tick" aria-hidden="true"></span>
-        <span class="mono-label">Business Intelligence</span>
+        <span class="mono-label">Business Intelligence Supervisor</span>
       </p>
       <p class="hero__lede">
-        I make reporting faster and data pipelines less fragile.
+        I build the whole path from raw data to a decision: the database, the pipeline, the dashboard, and the analysis behind it.
+      </p>
+      <p class="hero__actions">
+        <a class="btn btn--accent" href="#work">View portfolio</a>
       </p>
     </div>
-  </section>
 
-  <!-- Dashboards · thumbnail plates linking to the live vizzes on Tableau Public -->
-  <section class="section shell" id="dashboards">
-    <div class="section__head">
-      <h2 class="section__title">Dashboards</h2>
-      <p class="section__note">Published on Tableau Public. Each one opens interactive.</p>
-    </div>
-
-    <div class="vizzes">
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/ai/air_bnb_17875015285110/WhoSetsPrice/1.png"
-               alt="Airbnb pricing dashboard with a choropleth of median price index by New York zipcode, a histogram of the price index, and a table of median nightly price by borough, bedroom count, and room type." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/air_bnb_17875015285110/WhoSetsPrice" target="_blank" rel="noopener noreferrer">Who Sets the Price, and Where?</a>
-        </h3>
-        <p class="viz__body">New York Airbnb listings priced against their own neighbourhood: a median price index mapped by zipcode, the spread of that index across listings, and median nightly rates by borough, bedroom count, and room type.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/ID/IDX_summary/StockDashboard/1.png"
-               alt="Stock dashboard showing a selected ticker's price statistics, a price trend line, a volume chart, and ranked tables of the day's movers." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IDX_summary/StockDashboard" target="_blank" rel="noopener noreferrer">IDX Stock Summary</a>
-        </h3>
-        <p class="viz__body">A daily read on Indonesia Stock Exchange tickers: open, high, low, close and market cap for the selected stock, price and traded-volume trends, and ranked tables of the day's biggest movers.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/Su/Superstore_Dashboard_16999756740170/Dashboard1/1.png"
-               alt="Retail dashboard comparing this year against last year by segment and category, with a sub-category growth ranking, a regional table, and a map." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/Superstore_Dashboard_16999756740170/Dashboard1" target="_blank" rel="noopener noreferrer">Superstore Performance</a>
-        </h3>
-        <p class="viz__body">This year against last year, with growth carried through every cut: customer segment, product category, sub-category ranking, product detail, and region down to state, mapped.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-
-      <article class="viz reveal">
-        <span class="viz__frame">
-          <img class="viz__shot" src="https://public.tableau.com/static/images/In/IndonesiaCoalData2021/Dashboard1/1.png"
-               alt="Indonesian coal dashboard with a choropleth of production by province, an energy-mix bar, an export-destination treemap, and trend lines for production and price." loading="lazy" decoding="async" />
-        </span>
-        <h3 class="viz__title">
-          <a class="viz__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IndonesiaCoalData2021/Dashboard1" target="_blank" rel="noopener noreferrer">Indonesia Coal Data 2021</a>
-        </h3>
-        <p class="viz__body">Where Indonesian coal comes from and where it goes: production by province, coal's share of the national energy mix, export destinations by volume, domestic use by sector, and reference price over a decade.</p>
-        <span class="viz__meta mono-label">Tableau Public ↗</span>
-      </article>
-    </div>
-  </section>
-
-  <!-- Projects · 2-up, hairline-bordered, no imagery -->
-  <section class="section shell" id="projects">
-    <div class="section__head">
-      <h2 class="section__title">Selected projects</h2>
-      <p class="section__note">Analysis I've done outside the day job. Most of it is public, and open to read.</p>
-    </div>
-
-    <div class="projects">
-      <article class="project reveal">
-        <h3 class="project__title">
-          <a class="project__link" href="https://github.com/yusrilashr/Olist-Analysis" target="_blank" rel="noopener noreferrer">Olist E-commerce Analysis</a>
-        </h3>
-        <p class="project__body">Exploratory analysis of Brazilian e-commerce transactions after a full wrangling and cleaning pass: sales volume by city, hourly demand patterns, customer distribution, and the items people buy most.</p>
-        <div class="project__stack">
-          <span class="chip">pandas</span>
-          <span class="chip">NumPy</span>
-          <span class="chip">Matplotlib</span>
-          <span class="chip">seaborn</span>
+    <div class="hero__rail">
+      <dl class="shell facts">
+        <div class="fact">
+          <dt class="mono-label">Now</dt>
+          <dd>BI Supervisor, Tempo Scan Pacific</dd>
         </div>
-        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
-      </article>
-
-      <article class="project reveal">
-        <h3 class="project__title">
-          <a class="project__link" href="https://github.com/yusrilashr/Prediction-Model-for-Energy-Consumption-at-Manufacture-Industry" target="_blank" rel="noopener noreferrer">Energy Consumption Prediction</a>
-        </h3>
-        <p class="project__body">Analysis and modelling of energy consumption (kWh) across manufacturing companies, comparing candidate models to find the one that predicts consumption best.</p>
-        <div class="project__stack">
-          <span class="chip">Python</span>
-          <span class="chip">Predictive modelling</span>
+        <div class="fact">
+          <dt class="mono-label">Experience</dt>
+          <dd>3+ years in FMCG</dd>
         </div>
-        <span class="project__meta mono-label">Jupyter Notebook · 2023 · Repository ↗</span>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- F4 Step sequence · numbered by real dates, not decorative eyebrows -->
-  <section class="section shell" id="experience">
-    <div class="section__head">
-      <h2 class="section__title">Experience</h2>
-    </div>
-
-    <ol class="roles">
-      <li class="role reveal">
-        <span class="mono-label role__period">Jun 2026 – Present</span>
-        <h3 class="role__title">
-          Business Intelligence Supervisor
-          <span class="role__org">Tempo Scan Pacific · Jakarta</span>
-        </h3>
-        <ul class="role__points">
-          <li>Built a self-serve RFM dashboard in Tableau, refreshed every two hours, so Marketing can segment customers by purchase behaviour without requesting data pulls. Currently extending it with BG/NBD and Gamma-Gamma models for CLTV prediction.</li>
-          <li>Led the consolidation of 10+ recurring Excel reports (Monthly Sales, Service Level, Discount &amp; Promo Expense) into a single Tableau dashboard, cutting ad-hoc data requests from Marketing and Finance.</li>
-          <li>Supervise a one-person analyst team: setting reporting standards, reviewing SQL and Tableau output before release, and owning delivery of the monthly closing reports.</li>
-          <li>Integrated SAP BW and SQL sources into a single star schema in PostgreSQL, with Python and Tableau Prep ETL feeding the dashboards.</li>
-        </ul>
-      </li>
-
-      <li class="role reveal">
-        <span class="mono-label role__period">Jan 2023 – May 2026</span>
-        <h3 class="role__title">
-          Data Management &amp; Analyst
-          <span class="role__org">Tempo Scan Pacific · Jakarta</span>
-        </h3>
-        <ul class="role__points">
-          <li>Delivered Executive Summary dashboards in Tableau for Marketing, Trade, and Finance, tracking budget vs. actual with drilldowns by SKU, channel, and branch across 1,500 active SKUs.</li>
-          <li>Ran annual marketing budgeting end to end: SKU-level sales forecasts in Excel, branch budget allocation, and the consolidated files management reviewed.</li>
-          <li>Built a program monitoring dashboard in Tableau for Marketing to track ongoing trade programs, applying moving-average forecasting to estimate participation.</li>
-        </ul>
-      </li>
-
-      <li class="role reveal">
-        <span class="mono-label role__period">Mar – Sep 2022</span>
-        <h3 class="role__title">
-          Staff Intern
-          <span class="role__org">Bank Rakyat Indonesia</span>
-        </h3>
-        <ul class="role__points">
-          <li>Managed credit card data entry and monthly recapitulation reporting in Excel.</li>
-          <li>Processed QRIS merchant approval workflows for digital payment onboarding.</li>
-        </ul>
-      </li>
-    </ol>
-  </section>
-
-  <!-- The one graphite band · F3 spec sheet -->
-  <section class="band" id="skills">
-    <div class="shell">
-      <div class="section__head">
-        <h2 class="section__title">Technical expertise</h2>
-        <p class="section__note">What I reach for, and what I actually do with it.</p>
-      </div>
-
-      <dl class="spec">
-        <div class="spec__row reveal">
-          <dt class="spec__key">Database</dt>
-          <dd class="spec__val">
-            <span>PostgreSQL</span><span>schema &amp; ERD design</span><span>CTEs, window functions</span><span>query optimisation</span><span>scripted ingestion</span>
-          </dd>
+        <div class="fact">
+          <dt class="mono-label">Stack</dt>
+          <dd>PostgreSQL · Python · Tableau</dd>
         </div>
-        <div class="spec__row reveal">
-          <dt class="spec__key">Programming</dt>
-          <dd class="spec__val">
-            <span>Python</span><span>pandas, NumPy</span><span>data cleaning</span><span>automation</span><span>forecasting</span><span>pipeline optimisation</span>
-          </dd>
-        </div>
-        <div class="spec__row reveal">
-          <dt class="spec__key">Analytics &amp; Visualisation</dt>
-          <dd class="spec__val">
-            <span>Tableau, Tableau Prep</span><span>LOD</span><span>dashboard design</span><span>KPI definition</span><span>cohort &amp; segmentation analysis</span><span>Excel</span>
-          </dd>
+        <div class="fact">
+          <dt class="mono-label">Location</dt>
+          <dd>Jakarta, Indonesia</dd>
         </div>
       </dl>
     </div>
   </section>
 
-  <section class="section section--tight shell" id="education">
+  <!-- ================================================================== WORK
+       Portfolio Grid. To add a piece, copy one <li class="piece"> block.
+
+       data-stages  one or more of: database pipeline processing visualisation analysis
+                    (space-separated). The filter buttons and the links in the
+                    Skills section are built from these automatically, so a new
+                    stage appears on its own the first time a piece uses it.
+
+       Plate        with a screenshot:
+                      <span class="piece__plate"><img src="assets/work/name.png" alt="…" loading="lazy" decoding="async" /></span>
+                    without one (the tools become the plate):
+                      <span class="piece__plate piece__plate--text">
+                        <span class="piece__format">Notebook</span>
+                        <span class="piece__stack">pandas · NumPy</span>
+                      </span>
+       ====================================================================== -->
+  <section class="section shell" id="work">
     <div class="section__head">
-      <h2 class="section__title">Education</h2>
+      <h2 class="section__title">Portfolio</h2>
+      <p class="section__note">Published dashboards and analysis. Every piece opens the live work.</p>
     </div>
 
-    <div class="edu">
-      <span class="edu__degree">Bachelor of Economics</span>
-      <span class="edu__org">Universitas Gadjah Mada</span>
+    <!-- Filled in by js/main.js. Hidden without JavaScript; the grid still shows everything. -->
+    <div class="toolbar" id="toolbar" hidden>
+      <div class="filters" id="filters" role="group" aria-label="Filter the portfolio by stage"></div>
+      <p class="toolbar__count mono-label" id="pieces-count" aria-live="polite"></p>
     </div>
 
-    <div class="cta-strip">
+    <ul class="pieces" id="pieces">
+      <li class="piece" data-stages="visualisation analysis">
+        <span class="piece__plate">
+          <img src="https://public.tableau.com/static/images/ai/air_bnb_17875015285110/WhoSetsPrice/1.png"
+               alt="Airbnb pricing dashboard with a choropleth of median price index by New York zipcode, a histogram of the price index, and a table of median nightly price by borough, bedroom count, and room type." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/air_bnb_17875015285110/WhoSetsPrice" target="_blank" rel="noopener noreferrer">Who Sets the Price, and Where?</a>
+        </h3>
+        <p class="piece__body">New York Airbnb listings priced against their own neighbourhood: a median price index mapped by zipcode, the spread of that index across listings, and median nightly rates by borough, bedroom count, and room type.</p>
+        <p class="piece__meta mono-label">Visualisation · Analysis · Tableau Public <span aria-hidden="true">↗</span></p>
+      </li>
+
+      <li class="piece" data-stages="visualisation">
+        <span class="piece__plate">
+          <img src="https://public.tableau.com/static/images/ID/IDX_summary/StockDashboard/1.png"
+               alt="Stock dashboard showing a selected ticker's price statistics, a price trend line, a volume chart, and ranked tables of the day's movers." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IDX_summary/StockDashboard" target="_blank" rel="noopener noreferrer">IDX Stock Summary</a>
+        </h3>
+        <p class="piece__body">A daily read on Indonesia Stock Exchange tickers: open, high, low, close and market cap for the selected stock, price and traded-volume trends, and ranked tables of the day’s biggest movers.</p>
+        <p class="piece__meta mono-label">Visualisation · Tableau Public <span aria-hidden="true">↗</span></p>
+      </li>
+
+      <li class="piece" data-stages="visualisation">
+        <span class="piece__plate">
+          <img src="https://public.tableau.com/static/images/Su/Superstore_Dashboard_16999756740170/Dashboard1/1.png"
+               alt="Retail dashboard comparing this year against last year by segment and category, with a sub-category growth ranking, a regional table, and a map." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/Superstore_Dashboard_16999756740170/Dashboard1" target="_blank" rel="noopener noreferrer">Superstore Performance</a>
+        </h3>
+        <p class="piece__body">This year against last year, with growth carried through every cut: customer segment, product category, sub-category ranking, product detail, and region down to state, mapped.</p>
+        <p class="piece__meta mono-label">Visualisation · Tableau Public <span aria-hidden="true">↗</span></p>
+      </li>
+
+      <li class="piece" data-stages="visualisation">
+        <span class="piece__plate">
+          <img src="https://public.tableau.com/static/images/In/IndonesiaCoalData2021/Dashboard1/1.png"
+               alt="Indonesian coal dashboard with a choropleth of production by province, an energy-mix bar, an export-destination treemap, and trend lines for production and price." loading="lazy" decoding="async" />
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/viz/IndonesiaCoalData2021/Dashboard1" target="_blank" rel="noopener noreferrer">Indonesia Coal Data 2021</a>
+        </h3>
+        <p class="piece__body">Where Indonesian coal comes from and where it goes: production by province, coal’s share of the national energy mix, export destinations by volume, domestic use by sector, and reference price over a decade.</p>
+        <p class="piece__meta mono-label">Visualisation · Tableau Public <span aria-hidden="true">↗</span></p>
+      </li>
+
+      <li class="piece" data-stages="processing analysis">
+        <span class="piece__plate piece__plate--text">
+          <span class="piece__format">Notebook</span>
+          <span class="piece__stack">pandas · NumPy · Matplotlib · seaborn</span>
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://github.com/yusrilashr/Olist-Analysis" target="_blank" rel="noopener noreferrer">Olist E-commerce Analysis</a>
+        </h3>
+        <p class="piece__body">Exploratory analysis of Brazilian e-commerce transactions after a full wrangling and cleaning pass: sales volume by city, hourly demand patterns, customer distribution, and the items people buy most.</p>
+        <p class="piece__meta mono-label">Processing · Analysis · GitHub · 2023 <span aria-hidden="true">↗</span></p>
+      </li>
+
+      <li class="piece" data-stages="analysis">
+        <span class="piece__plate piece__plate--text">
+          <span class="piece__format">Notebook</span>
+          <span class="piece__stack">Python · Predictive modelling</span>
+        </span>
+        <h3 class="piece__title">
+          <a class="piece__link" href="https://github.com/yusrilashr/Prediction-Model-for-Energy-Consumption-at-Manufacture-Industry" target="_blank" rel="noopener noreferrer">Energy Consumption Prediction</a>
+        </h3>
+        <p class="piece__body">Analysis and modelling of energy consumption (kWh) across manufacturing companies, comparing candidate models to find the one that predicts consumption best.</p>
+        <p class="piece__meta mono-label">Analysis · GitHub · 2023 <span aria-hidden="true">↗</span></p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =============================================================== SKILLS
+       The one dark band. Five stages in the order the data actually travels.
+       Each stage's data-stage matches the data-stages on portfolio pieces;
+       when a piece covers a stage, JS adds a link from the stage to that work. -->
+  <section class="band" id="skills">
+    <div class="shell">
+      <div class="section__head">
+        <h2 class="section__title">Skills, end to end</h2>
+        <p class="section__note">Five stages, in the order the data travels: from the source table to the decision.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="flow__stage" data-stage="database">
+          <span class="flow__num mono-label">01</span>
+          <h3 class="flow__name">Database</h3>
+          <p class="flow__does">Model the data once, so every report reads from the same tables.</p>
+          <ul class="flow__tools">
+            <li>PostgreSQL</li>
+            <li>Star schema &amp; ERD design</li>
+            <li>Query optimisation</li>
+          </ul>
+        </li>
+
+        <li class="flow__stage" data-stage="pipeline">
+          <span class="flow__num mono-label">02</span>
+          <h3 class="flow__name">Pipeline</h3>
+          <p class="flow__does">Move data from the source systems into that model, on a schedule.</p>
+          <ul class="flow__tools">
+            <li>Tableau Prep</li>
+            <li>Python scripted ingestion</li>
+            <li>SAP BW sources</li>
+          </ul>
+        </li>
+
+        <li class="flow__stage" data-stage="processing">
+          <span class="flow__num mono-label">03</span>
+          <h3 class="flow__name">Processing</h3>
+          <p class="flow__does">Clean, join, and reshape it into something that can be trusted.</p>
+          <ul class="flow__tools">
+            <li>SQL: CTEs, window functions</li>
+            <li>pandas, NumPy</li>
+            <li>Data cleaning</li>
+          </ul>
+        </li>
+
+        <li class="flow__stage" data-stage="visualisation">
+          <span class="flow__num mono-label">04</span>
+          <h3 class="flow__name">Visualisation</h3>
+          <p class="flow__does">Design dashboards people can answer their own questions with.</p>
+          <ul class="flow__tools">
+            <li>Tableau, LOD expressions</li>
+            <li>KPI definition</li>
+            <li>Excel</li>
+          </ul>
+        </li>
+
+        <li class="flow__stage" data-stage="analysis">
+          <span class="flow__num mono-label">05</span>
+          <h3 class="flow__name">Analysis</h3>
+          <p class="flow__does">Turn the numbers into a recommendation someone can act on.</p>
+          <ul class="flow__tools">
+            <li>Segmentation &amp; cohort analysis</li>
+            <li>Forecasting</li>
+            <li>Ad-hoc analysis</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =================================================================== CV -->
+  <section class="section shell" id="cv">
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">CV</h2>
+        <p class="section__note">Experience and education. The PDF is the same content on one page.</p>
+      </div>
       <a class="btn btn--ghost" href="assets/Yusril_Sabilla_Ashar_CV.pdf" download>Download CV (PDF)</a>
-      <span class="cta-strip__note">Same content, one page, ready to print.</span>
     </div>
+
+    <h3 class="cv__group">Experience</h3>
+    <ol class="cv__rows">
+      <li class="cv__row">
+        <p class="cv__period mono-label">Jun 2026 – Present</p>
+        <div class="cv__main">
+          <h4 class="cv__role">Business Intelligence Supervisor</h4>
+          <p class="cv__org">Tempo Scan Pacific · Jakarta</p>
+          <ul class="cv__points">
+            <li>Developed an hourly-refreshed RFM (Recency, Frequency, Monetary) dashboard in Tableau, giving Marketing near-real-time customer segmentation for program planning and targeting.</li>
+            <li>Migrated 5–10 recurring Excel reports to Tableau with direct SAP and Data Lake connections, enabling self-service data extraction and reducing ad-hoc requests.</li>
+            <li>Coordinated a one-person BI analyst team: collaborating on dashboard development, reviewing SQL and Tableau outputs, and supporting monthly reporting deliverables.</li>
+            <li>Created a star schema in PostgreSQL and combined it with SAP BW data using Tableau Prep, delivering integrated datasets for dashboards on Tableau Server.</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="cv__row">
+        <p class="cv__period mono-label">Jan 2023 – May 2026</p>
+        <div class="cv__main">
+          <h4 class="cv__role">Data Management &amp; Analyst</h4>
+          <p class="cv__org">Tempo Scan Pacific · Jakarta</p>
+          <ul class="cv__points">
+            <li>Delivered Executive Summary dashboards in Tableau for Marketing, Trade, and Finance, tracking budget vs. actual with drilldowns by SKU, channel, and branch across 1,500 active SKUs.</li>
+            <li>Supported annual marketing budgeting end to end: SKU-level sales forecasts in Excel, branch budget allocation, and the consolidated files management reviewed.</li>
+            <li>Developed a program monitoring dashboard in Tableau for Marketing to track ongoing trade programs, applying moving-average forecasting to estimate participation.</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="cv__row">
+        <p class="cv__period mono-label">Mar – Sep 2022</p>
+        <div class="cv__main">
+          <h4 class="cv__role">Staff Intern</h4>
+          <p class="cv__org">Bank Rakyat Indonesia</p>
+          <ul class="cv__points">
+            <li>Managed credit card data entry and monthly recapitulation reports in Excel.</li>
+            <li>Processed QRIS merchant approval workflows for digital payment onboarding.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+
+    <h3 class="cv__group">Education</h3>
+    <ol class="cv__rows">
+      <li class="cv__row">
+        <p class="cv__period mono-label">Degree</p>
+        <div class="cv__main">
+          <h4 class="cv__role">Bachelor of Economics</h4>
+          <p class="cv__org">Universitas Gadjah Mada</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================================== CONTACT -->
+  <section class="section section--close shell" id="contact">
+    <div class="section__head">
+      <h2 class="section__title">Contact</h2>
+      <p class="section__note">Email is the fastest way to reach me.</p>
+    </div>
+
+    <ul class="contact">
+      <li>
+        <!-- Address is split across data attributes and assembled in JS; with JS off the
+             obfuscated form stays readable, so nobody hits a dead end. -->
+        <a class="contact__link" id="email-link" href="#contact" data-user="yusrilashar22" data-domain="gmail.com">
+          <span class="contact__label">Email</span>
+          <span class="contact__value" id="email-text">yusrilashar22 [at] gmail.com</span>
+          <span class="contact__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a class="contact__link" href="https://www.linkedin.com/in/yusrilsabillaashar/" target="_blank" rel="noopener noreferrer">
+          <span class="contact__label">LinkedIn</span>
+          <span class="contact__value">in/yusrilsabillaashar</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a class="contact__link" href="https://github.com/yusrilashr" target="_blank" rel="noopener noreferrer">
+          <span class="contact__label">GitHub</span>
+          <span class="contact__value">yusrilashr</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a class="contact__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/vizzes" target="_blank" rel="noopener noreferrer">
+          <span class="contact__label">Tableau Public</span>
+          <span class="contact__value">yusril.sabilla.ashar4080</span>
+          <span class="contact__arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
 </main>
 
-<!-- Ft5 Statement · a closing line, not a sitemap -->
+<!-- Ft2 · one line. The Contact section above did the closing. -->
 <footer class="foot">
-  <div class="shell">
-    <p class="foot__line">Get in touch.</p>
-
-    <div class="foot__links">
-      <!-- Address is split across data attributes and assembled in JS; with JS off the
-           obfuscated form stays readable, so nobody hits a dead end. -->
-      <a class="foot__link" id="email-link" href="#" data-user="yusrilashar22" data-domain="gmail.com">
-        <span id="email-text">yusrilashar22 [at] gmail.com</span>
-      </a>
-      <a class="foot__link" href="https://www.linkedin.com/in/yusrilsabillaashar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="foot__link" href="https://github.com/yusrilashr" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="foot__link" href="https://public.tableau.com/app/profile/yusril.sabilla.ashar4080/vizzes" target="_blank" rel="noopener noreferrer">Tableau Public</a>
-    </div>
-
-    <div class="foot__meta">
-      <span class="mono-label">Yusril Sabilla Ashar</span>
-      <span class="mono-label">&copy; <span id="year">2026</span></span>
-    </div>
+  <div class="shell foot__line">
+    <span class="mono-label">&copy; <span id="year">2026</span> Yusril Sabilla Ashar</span>
+    <a class="foot__top mono-label" href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </div>
 </footer>
 

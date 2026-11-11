@@ -75,7 +75,9 @@
   /* ---- Layout ------------------------------------------------------ */
   --page-max:    68rem;
   --page-gutter: clamp(1.25rem, 5vw, 4rem);
-  --nav-height:  72px;
+  --nav-height:  56px;                       /* the floating bar itself */
+  --nav-offset:  var(--space-sm);            /* its gap from the top edge */
+  --nav-clear:   calc(var(--nav-offset) + var(--nav-height));
 
   /* ---- Rules & radii ---------------------------------------------- */
   --rule-hair:  1px;

@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-11",
+    "genre": "modern-minimal",
+    "macrostructure": "Portfolio Grid",
+    "theme": "Cobalt",
+    "theme_axes": "cool-light / grotesk-sans / electric-cobalt",
+    "nav": "N5",
+    "footer": "Ft2",
+    "enrichment": "none",
+    "brief": "Redesign - portfolio-first home, end-to-end skills flow, then CV. Theme kept on purpose (owner's brand); structure changed."
+  },
+  {
     "date": "2026-07-28",
     "genre": "modern-minimal",
     "macrostructure": "Marquee Hero",
