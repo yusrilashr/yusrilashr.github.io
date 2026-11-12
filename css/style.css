@@ -3,7 +3,7 @@
  *   cobalt signal are the owner's brand. What changed is structure, not dress.
  * Order: masthead → Portfolio (the page) → Skills (the one dark band) → CV → Contact.
  * N5 knobs: width=content-sized, backdrop=solid navy, anchor=top-centred. Radius 10px, not a pill — Cobalt draws with a ruler.
- * H2-derived masthead: copy left over the ribbon, proof as a four-fact rail along the bottom edge.
+ * H2-derived masthead: full first screen, copy left over the ribbon, a scroll cue at the foot.
  * F4 Step sequence (skills): numbering=01–05, layout=horizontal flow, connector=line. Ordinal for real: it is the data path.
  * F3 Spec sheet (CV): 2-col date/detail rows, rule every row.
  * Removed: scroll-triggered fade-up on every block.
@@ -254,6 +254,29 @@ img, svg { max-width: 100%; height: auto; }
 .nav__link:focus-visible::after,
 .nav__link[aria-current="true"]::after { transform: scaleX(1); }
 
+/* The theme toggle: an icon on the bar, quiet like the links. The moon shows
+   in light (it switches to dark), the sun in dark. */
+.nav__theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-navy-ink-2);
+  cursor: pointer;
+  transition: color var(--dur-short) var(--ease-out);
+}
+.nav__theme[hidden] { display: none; }
+.nav__theme:hover { color: var(--color-navy-ink); }
+.nav__theme:active { color: var(--color-accent-lift); }
+.nav__theme-sun { display: none; }
+:root[data-theme="dark"] .nav__theme-sun  { display: block; }
+:root[data-theme="dark"] .nav__theme-moon { display: none; }
+
 @media (min-width: 40rem) {
   .nav__brand { display: inline-flex; }
   .nav__cta { display: inline-flex; margin-inline-start: var(--space-xs); }
@@ -263,10 +286,19 @@ img, svg { max-width: 100%; height: auto; }
 /* -------------------------------------------------------------- masthead */
 
 /* Full-bleed navy, near-black under the type and opening toward cobalt under
-   the ribbon. Height is the content's own — never a forced viewport. */
+   the ribbon. The first screen is all navy, the name in the middle of it and
+   a cue at the foot pointing down. Below that, out of view until you scroll,
+   the band runs on a hand's width further and fades into the page. */
 .hero {
+  --hero-fade: 3rem;
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh + var(--hero-fade));
+  min-height: calc(100svh + var(--hero-fade));
+  padding-block-end: var(--hero-fade);
   padding-block-start: calc(var(--nav-clear) + var(--space-xl));
   background:
     radial-gradient(72% 130% at 70% 52%,
@@ -291,16 +323,20 @@ img, svg { max-width: 100%; height: auto; }
   pointer-events: none;
 }
 
-/* The edge into the page, brightening to cobalt at the end the band is lit. */
+/* The edge into the page: a thin strip under the first screen where the band,
+   ribbon and all, fades into the paper. Eased stops so it has no hard start. */
 .hero::after {
   content: "";
   position: absolute;
-  inset: auto 0 0;
-  height: var(--rule-thick);
-  background: linear-gradient(90deg,
-      var(--color-navy-rule) 0%,
-      color-mix(in oklch, var(--color-accent) 60%, var(--color-navy-rule)) 55%,
-      var(--color-accent) 100%);
+  inset: auto 0 -1px;   /* one pixel past the edge, so no sub-pixel seam shows */
+  height: var(--hero-fade);
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+      color-mix(in oklch, var(--color-paper) 0%,  transparent) 0%,
+      color-mix(in oklch, var(--color-paper) 12%, transparent) 25%,
+      color-mix(in oklch, var(--color-paper) 45%, transparent) 50%,
+      color-mix(in oklch, var(--color-paper) 82%, transparent) 75%,
+      var(--color-paper) 100%);
 }
 
 .hero__body { padding-block-end: var(--space-2xl); }
@@ -367,35 +403,30 @@ img, svg { max-width: 100%; height: auto; }
 .hero.is-live .hero__ribbon { display: block; }
 .hero.is-live::before { display: none; }
 
-/* The fact rail. Its own darker strip, so the four answers stay legible where
-   the ribbon passes behind them. */
-.hero__rail {
-  background: color-mix(in oklch, var(--color-navy-deep) 62%, transparent);
-  border-block-start: var(--rule-hair) solid color-mix(in oklch, var(--color-navy-rule) 70%, transparent);
+/* The scroll cue. Two thin chevrons, centred at the foot of the band, drifting
+   down a few pixels and back. The drift sits on the icon so it never fights the
+   entrance on the link itself. */
+.hero__cue {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  bottom: calc(var(--hero-fade) + var(--space-lg));
+  width: max-content;
+  margin-inline: auto;
+  padding: var(--space-xs);
+  color: color-mix(in oklch, var(--color-navy-ink-2) 60%, transparent);
+  border-radius: 999px;
+  transition: color var(--dur-short) var(--ease-out);
 }
-
-.facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 var(--space-lg);
+.hero__cue svg {
+  display: block;
+  animation: cue-drift 2.4s var(--ease-in-out) 1.2s infinite;
 }
-
-.fact {
-  display: grid;
-  gap: var(--space-3xs);
-  align-content: start;
-  min-width: 0;
-  padding-block: var(--space-md);
-}
-.fact:nth-child(n + 3) {
-  border-block-start: var(--rule-hair) solid color-mix(in oklch, var(--color-navy-rule) 55%, transparent);
-}
-
-.fact dt { color: var(--color-accent-lift); }
-.fact dd {
-  font-size: var(--text-base);
-  line-height: 1.4;
-  color: var(--color-navy-ink);
+.hero__cue:hover,
+.hero__cue:focus-visible { color: var(--color-navy-ink); }
+@keyframes cue-drift {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
 }
 
 @media (min-width: 40rem) {
@@ -404,12 +435,6 @@ img, svg { max-width: 100%; height: auto; }
   .hero__body { padding-block-end: var(--space-2xl); }
   .hero__lede { max-width: none; font-size: var(--text-xl); }
   .hero__ribbon { opacity: 1; }
-}
-
-@media (min-width: 60rem) {
-  .facts { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr); }
-  .fact { padding-block: var(--space-lg); }
-  .fact:nth-child(n + 3) { border-block-start: 0; }
 }
 
 /* ------------------------------------------------------------- sections */
@@ -888,24 +913,20 @@ img, svg { max-width: 100%; height: auto; }
 /* ----------------------------------------------------------------- print */
 
 @media print {
-  .nav, .skip-link, .toolbar, .hero__actions, .hero__tick, .btn, .flow__proof, .foot__top { display: none !important; }
+  .nav, .skip-link, .toolbar, .hero__actions, .hero__tick, .btn, .flow__proof, .foot__top, .hero__cue { display: none !important; }
 
   body { background: var(--color-paper); color: var(--color-ink); font-size: 10pt; }
 
   /* both dark surfaces invert to paper — nobody wants a full-bleed ink block */
-  .hero { padding-block: 0; background: none; color: var(--color-ink-2); }
+  .hero { min-height: 0; padding-block: 0; background: none; color: var(--color-ink-2); }
   .hero::before, .hero::after { display: none; }
   .hero__body { padding-block-end: var(--space-md); }
   .hero__name { font-size: 28pt; max-width: none; color: var(--color-ink); }
-  .hero__role .mono-label, .fact dt { color: var(--color-ink-3); }
+  .hero__role .mono-label { color: var(--color-ink-3); }
   .hero__lede, .hero__lede strong { font-size: 12pt; color: var(--color-ink); }
   .hero__ribbon { display: none !important; }
   .rise { animation: none; }
   .reveal { opacity: 1 !important; transform: none !important; }
-  .hero__rail { background: none; border-color: var(--color-rule); }
-  .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .fact { border: 0 !important; }
-  .fact dd { color: var(--color-ink); }
 
   .section, .section--close, .band { padding-block: var(--space-md); }
 

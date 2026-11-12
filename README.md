@@ -21,7 +21,7 @@ favicon.svg     YA monogram
 
 | Section | Where in `index.html` |
 |---|---|
-| Name, role, summary, four facts | `<section class="hero">` |
+| Name, role, summary, scroll cue | `<section class="hero">` |
 | Portfolio | `<ul class="pieces">` — one `<li class="piece">` per piece |
 | Skills, end to end | `<ol class="flow">` — one `<li class="flow__stage">` per stage |
 | CV (experience, education, PDF) | `<section id="cv">` — one `<li class="cv__row">` per job |

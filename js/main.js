@@ -1,5 +1,5 @@
 /* Hallmark · Cobalt · portfolio filter, skills-to-work links, nav position, scroll pop-in,
- * the moving masthead ribbon, and contact plumbing.
+ * the moving masthead ribbon, contact plumbing, and the light/dark toggle.
  * No framework, no dependencies. Without this file the page is complete: every piece
  * shows, nothing is hidden waiting to animate, the ribbon is a still image, and the
  * email reads in its obfuscated form.
@@ -386,4 +386,38 @@
 
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  /* --- 7. Theme · light / dark ------------------------------------------
+   * The inline script in <head> has already set data-theme. This wires the
+   * button: a click flips the theme and remembers it; until the visitor picks
+   * one, the page keeps following their system setting. */
+  var toggle = document.getElementById("theme-toggle");
+  if (toggle) {
+    var root = document.documentElement;
+    var system = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+    function saved() {
+      try { return localStorage.getItem("theme"); } catch (e) { return null; }
+    }
+
+    function apply(theme) {
+      root.setAttribute("data-theme", theme);
+      toggle.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    }
+
+    apply(root.getAttribute("data-theme") === "dark" ? "dark" : "light");
+    toggle.hidden = false;
+
+    toggle.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      apply(next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+
+    if (system) {
+      var follow = function (e) { if (!saved()) apply(e.matches ? "dark" : "light"); };
+      if (system.addEventListener) system.addEventListener("change", follow);
+      else if (system.addListener) system.addListener(follow);
+    }
+  }
 })();

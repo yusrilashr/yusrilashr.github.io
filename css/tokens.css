@@ -108,4 +108,31 @@
   --z-sticky:  100;
   --z-nav:     500;
   --z-overlay: 800;
+
+  color-scheme: light;
+}
+
+/* ---- Dark theme ---------------------------------------------------------
+ * The page takes the masthead's navy as its ground, so the header and the
+ * page read as one surface. Set by data-theme on <html>: js in <head> picks
+ * the visitor's saved choice, or their system setting when there is none.
+ * Only the light-ground tokens change; the navy masthead and the ribbon are
+ * the same in both themes.
+ */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-paper:        oklch(15%   0.045 264);  /* the band's navy, between deep and mid */
+  --color-paper-2:      oklch(19%   0.055 264);  /* recessed surface: plates */
+  --color-ink:          oklch(96%   0.005 250);  /* headings — same as the wordmark */
+  --color-ink-2:        oklch(84%   0.015 255);  /* body copy */
+  --color-ink-3:        oklch(70%   0.025 255);  /* muted meta */
+  --color-rule:         oklch(27%   0.050 262);  /* hairline */
+  --color-rule-2:       oklch(38%   0.060 260);  /* emphasised rule */
+
+  --color-accent-text:  oklch(76%   0.150 256);  /* accent as text, lifted to read on navy */
+
+  /* The Skills band sinks to the deepest navy, so it still reads as a band. */
+  --color-graphite:       oklch(11%   0.035 265);
+  --color-graphite-rule:  oklch(26%   0.045 262);
 }
