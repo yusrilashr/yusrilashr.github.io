@@ -31,6 +31,15 @@
   --color-navy-ink:   oklch(96%   0.005 250);  /* wordmark — 17.1:1 on the band */
   --color-navy-ink-2: oklch(78%   0.020 255);  /* nav links — 9.6:1 on the band */
 
+  /* ---- Colour · the masthead ribbon ------------------------------- */
+  /* The stroke gradient of assets/header-ribbon.svg, dark end to lit end.
+     Hex on purpose: these must match that file exactly, and the canvas
+     that redraws the ribbon reads them from here. */
+  --ribbon-1: #123a80;
+  --ribbon-2: #2b6fd0;
+  --ribbon-3: #5aa4ff;
+  --ribbon-4: #9fcdff;
+
   /* ---- Colour · the one dark band --------------------------------- */
   --color-graphite:     oklch(20%   0.016 260);
   --color-graphite-2:   oklch(26%   0.016 260);

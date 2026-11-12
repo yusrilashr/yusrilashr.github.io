@@ -48,21 +48,25 @@
   <!-- Masthead · who, what, and one way forward. The fact rail answers the
        recruiter's first four questions before any scrolling. -->
   <section class="hero" id="top">
+    <!-- The ribbon, drawn live by js/main.js so it can move. Without JS (or with
+         motion turned off) the still image in the stylesheet shows instead. -->
+    <canvas class="hero__ribbon" id="ribbon" aria-hidden="true"></canvas>
+
     <div class="shell hero__body">
-      <h1 class="hero__name">Yusril Sabilla Ashar</h1>
-      <p class="hero__role">
+      <!-- .rise = the one entrance: each line settles into place in turn (--r sets the order). -->
+      <h1 class="hero__name rise" style="--r: 0">Yusril Sabilla Ashar</h1>
+      <p class="hero__role rise" style="--r: 1">
         <span class="hero__tick" aria-hidden="true"></span>
         <span class="mono-label">Business Intelligence Supervisor</span>
       </p>
-      <p class="hero__lede">
-        I build the whole path from raw data to a decision: the database, the pipeline, the dashboard, and the analysis behind it.
-      </p>
-      <p class="hero__actions">
+      <p class="hero__lede rise" style="--r: 2">From scattered numbers to <strong>one clear picture.</strong></p>
+
+      <p class="hero__actions rise" style="--r: 3">
         <a class="btn btn--accent" href="#work">View portfolio</a>
       </p>
     </div>
 
-    <div class="hero__rail">
+    <div class="hero__rail rise" style="--r: 4">
       <dl class="shell facts">
         <div class="fact">
           <dt class="mono-label">Now</dt>
@@ -199,7 +203,7 @@
       </div>
 
       <ol class="flow">
-        <li class="flow__stage" data-stage="database">
+        <li class="flow__stage" id="stage-database" data-stage="database">
           <span class="flow__num mono-label">01</span>
           <h3 class="flow__name">Database</h3>
           <p class="flow__does">Model the data once, so every report reads from the same tables.</p>
@@ -210,7 +214,7 @@
           </ul>
         </li>
 
-        <li class="flow__stage" data-stage="pipeline">
+        <li class="flow__stage" id="stage-pipeline" data-stage="pipeline">
           <span class="flow__num mono-label">02</span>
           <h3 class="flow__name">Pipeline</h3>
           <p class="flow__does">Move data from the source systems into that model, on a schedule.</p>
@@ -221,7 +225,7 @@
           </ul>
         </li>
 
-        <li class="flow__stage" data-stage="processing">
+        <li class="flow__stage" id="stage-processing" data-stage="processing">
           <span class="flow__num mono-label">03</span>
           <h3 class="flow__name">Processing</h3>
           <p class="flow__does">Clean, join, and reshape it into something that can be trusted.</p>
@@ -232,7 +236,7 @@
           </ul>
         </li>
 
-        <li class="flow__stage" data-stage="visualisation">
+        <li class="flow__stage" id="stage-visualisation" data-stage="visualisation">
           <span class="flow__num mono-label">04</span>
           <h3 class="flow__name">Visualisation</h3>
           <p class="flow__does">Design dashboards people can answer their own questions with.</p>
@@ -243,7 +247,7 @@
           </ul>
         </li>
 
-        <li class="flow__stage" data-stage="analysis">
+        <li class="flow__stage" id="stage-analysis" data-stage="analysis">
           <span class="flow__num mono-label">05</span>
           <h3 class="flow__name">Analysis</h3>
           <p class="flow__does">Turn the numbers into a recommendation someone can act on.</p>

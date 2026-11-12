@@ -6,8 +6,10 @@
  * H2-derived masthead: copy left over the ribbon, proof as a four-fact rail along the bottom edge.
  * F4 Step sequence (skills): numbering=01–05, layout=horizontal flow, connector=line. Ordinal for real: it is the data path.
  * F3 Spec sheet (CV): 2-col date/detail rows, rule every row.
- * Removed: scroll-triggered fade-up on every block. The only motion left is the card fade on filter change,
- *   the nav underline, and button press.
+ * Removed: scroll-triggered fade-up on every block.
+ * Motion (owner's request, 2026-11-12): the masthead lines rise in turn on load; the ribbon billows slowly like
+ *   a curtain (canvas, paused off-screen); blocks pop in once as they scroll into view; plus the card fade on
+ *   filter change, nav underline, button press. All of it is off under prefers-reduced-motion.
  * Theme axes: paper=cool light · display=grotesk-sans · accent=electric cobalt
  * CV rows keep a date column beside each role: tabular data (date | entry), not a section eyebrow.
  * contrast: pass (40-41) · nav: N5 · footer: Ft2 · slop: pass (42-45) · honest: pass (46) · chrome: pass (47)
@@ -106,6 +108,18 @@ img, svg { max-width: 100%; height: auto; }
   text-transform: uppercase;
   color: var(--color-ink-3);
 }
+
+/* Pop-in on scroll. One small move — fade, a short rise, a hair of scale — once
+   per block. js/main.js adds .reveal and later .is-in; nothing in the HTML
+   carries these classes, so without JS the page is simply all there. */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--space-md)) scale(0.985);
+  transition: opacity var(--dur-long) var(--ease-out),
+              transform var(--dur-long) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-in { opacity: 1; transform: none; }
 
 /* --------------------------------------------------------------- buttons */
 
@@ -316,12 +330,42 @@ img, svg { max-width: 100%; height: auto; }
   background: var(--color-accent-lift);
 }
 
+/* One quiet sentence under the name: body face, regular weight, soft colour.
+   Only its last three words step forward. */
 .hero__lede {
-  max-width: 56ch;
-  font-size: var(--text-md);
+  max-width: 30ch;
+  font-size: var(--text-lg);
+  line-height: 1.45;
   color: var(--color-navy-ink-2);
-  text-wrap: pretty;
+  text-wrap: balance;
 }
+.hero__lede strong { font-weight: 500; color: var(--color-navy-ink); }
+
+/* The entrance. Runs once on load; --r is the line's place in the order.
+   An animation, not a class toggled by JS, so nothing can be left invisible. */
+.rise {
+  animation: rise var(--dur-long) var(--ease-out) both;
+  animation-delay: calc(var(--r, 0) * 80ms);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(var(--space-sm)); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* The live ribbon. Same artwork as the still image, redrawn each frame so the
+   fan can billow. It takes over from .hero::before once it is drawing. */
+.hero__ribbon {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.hero.is-live .hero__ribbon { display: block; }
+.hero.is-live::before { display: none; }
 
 .hero__actions { margin-block-start: var(--space-xl); }
 
@@ -359,8 +403,9 @@ img, svg { max-width: 100%; height: auto; }
 @media (min-width: 40rem) {
   .hero { padding-block-start: calc(var(--nav-clear) + var(--space-2xl)); }
   .hero::before { opacity: 1; background-position: right center; }
-  .hero__body { padding-block-end: var(--space-3xl); }
-  .hero__lede { font-size: var(--text-lg); }
+  .hero__body { padding-block-end: var(--space-2xl); }
+  .hero__lede { max-width: none; font-size: var(--text-xl); }
+  .hero__ribbon { opacity: 1; }
 }
 
 @media (min-width: 60rem) {
@@ -627,6 +672,8 @@ img, svg { max-width: 100%; height: auto; }
   color: var(--color-graphite-ink);
 }
 
+.flow__stage:target .flow__name { color: var(--color-accent-lift); }
+
 .flow__does {
   max-width: 46ch;
   font-size: var(--text-base);
@@ -833,8 +880,10 @@ img, svg { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
 
@@ -851,7 +900,10 @@ img, svg { max-width: 100%; height: auto; }
   .hero__body { padding-block-end: var(--space-md); }
   .hero__name { font-size: 28pt; max-width: none; color: var(--color-ink); }
   .hero__role .mono-label, .fact dt { color: var(--color-ink-3); }
-  .hero__lede { font-size: 10pt; color: var(--color-ink-2); }
+  .hero__lede, .hero__lede strong { font-size: 12pt; color: var(--color-ink); }
+  .hero__ribbon { display: none !important; }
+  .rise { animation: none; }
+  .reveal { opacity: 1 !important; transform: none !important; }
   .hero__rail { background: none; border-color: var(--color-rule); }
   .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .fact { border: 0 !important; }
