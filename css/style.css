@@ -361,13 +361,11 @@ img, svg { max-width: 100%; height: auto; }
   display: none;
   width: 100%;
   height: 100%;
-  opacity: 0.5;
+  opacity: 0.6;
   pointer-events: none;
 }
 .hero.is-live .hero__ribbon { display: block; }
 .hero.is-live::before { display: none; }
-
-.hero__actions { margin-block-start: var(--space-xl); }
 
 /* The fact rail. Its own darker strip, so the four answers stay legible where
    the ribbon passes behind them. */

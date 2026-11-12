@@ -222,7 +222,7 @@
   onFrame();
 
   /* --- 5. Masthead ribbon · a curtain in a light wind --------------------
-   * The ribbon is 82 straight lines whose envelope draws a curve. Here the same
+   * The ribbon is two fans of straight lines whose envelopes draw the curves. Here the same
    * lines are redrawn on a canvas with their ends swaying: a slow fold travels
    * along each fan, further at the loose end than at the anchored one, and the
    * "wind" itself rises and falls.
@@ -318,18 +318,30 @@
     wake();
   }
 
-  /* The artwork, as numbers. These are the same 82 lines as assets/header-ribbon.svg
-   * (which stays as the still fallback): each fan runs its lines between two rails,
-   * `from` and `to`, and fades toward both edges. Kept here rather than fetched from
-   * the SVG so the ribbon also moves when the page is opened straight from disk. */
+  /* The artwork, as numbers: the two fans of assets/header-ribbon.svg (which
+   * stays as the still fallback). Each fan runs its lines between two rails,
+   * `from` and `to`, and fades toward both edges along the `half` curve.
+   * Kept here rather than fetched from the SVG so the ribbon also moves when
+   * the page is opened straight from disk.
+   *
+   * The live ribbon is drawn a little fuller than the still one: about a fifth
+   * more lines in each fan, each a touch stronger (GAIN). To make it quieter or
+   * bolder, change the two line counts below, or GAIN. */
+  var GAIN = 1.2;
+
   function fan(count, from, to, half) {
     var lines = [];
+    var mid = (count - 1) / 2;
     for (var i = 0; i < count; i++) {
       var u = i / (count - 1);
+      // Where this line sits on the fade curve: 0 at either edge, 1 at the centre.
+      var at = (1 - Math.abs(i - mid) / mid) * (half.length - 1);
+      var lo = Math.floor(at);
+      var hi = Math.min(lo + 1, half.length - 1);
       lines.push({
         x1: from[0] + (from[2] - from[0]) * u, y1: from[1] + (from[3] - from[1]) * u,
         x2: to[0]   + (to[2]   - to[0])   * u, y2: to[1]   + (to[3]   - to[1])   * u,
-        o:  half[Math.min(i, count - 1 - i)]
+        o:  Math.min(1, (half[lo] + (half[hi] - half[lo]) * (at - lo)) * GAIN)
       });
     }
     return lines;
@@ -348,10 +360,10 @@
         fade: [0.30, 0.62],
         stops: stops,
         fans: [
-          fan(47, [90, 564, 1263.3, -48], [2010, 84, 823.3, 552],
+          fan(57, [90, 564, 1263.3, -48], [2010, 84, 823.3, 552],
             [0.060, 0.104, 0.130, 0.150, 0.169, 0.186, 0.202, 0.217, 0.231, 0.245, 0.258, 0.271,
              0.283, 0.295, 0.306, 0.318, 0.329, 0.339, 0.350, 0.360, 0.370, 0.380, 0.390, 0.400]),
-          fan(35, [340, 576, 1486.7, 48], [2046.7, 168, 1113.3, 564],
+          fan(43, [340, 576, 1486.7, 48], [2046.7, 168, 1113.3, 564],
             [0.040, 0.067, 0.082, 0.095, 0.106, 0.117, 0.126, 0.135, 0.144,
              0.152, 0.160, 0.168, 0.176, 0.183, 0.190, 0.197, 0.203, 0.210])
         ]
